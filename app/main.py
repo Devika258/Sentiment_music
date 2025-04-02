@@ -3,7 +3,8 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.routes import mood  # ✅ Import your mood router
+from app.routes import mood   # ✅ Already included
+from app.routes import auth   # ✅ Add this line to include auth
 
 # Initialize FastAPI app
 app = FastAPI(
@@ -12,19 +13,17 @@ app = FastAPI(
     version="1.0.0"
 )
 
-# CORS Middleware (⚠️ In production, set allowed origins securely)
+# CORS Middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=["*"],  # For development
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-# Serve static files (like JS, CSS, images)
+# Static & Templates
 app.mount("/static", StaticFiles(directory="app/static"), name="static")
-
-# Set up Jinja2 template engine (used if you serve HTML templates)
 templates = Jinja2Templates(directory="app/templates")
 
 # -------------------------
@@ -39,11 +38,12 @@ async def root():
 async def health_check():
     return {"status": "healthy"}
 
-# ✅ Include mood analysis route
+# ✅ Include routers
 app.include_router(mood.router, prefix="/api/mood", tags=["Mood Analysis"])
+app.include_router(auth.router, prefix="/auth", tags=["Auth"])  # ✅ Add this line
 
 # -------------------------
-#     Local Run Config
+#      Run Server
 # -------------------------
 
 if __name__ == "__main__":

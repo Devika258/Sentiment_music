@@ -1,6 +1,7 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Depends
 from pydantic import BaseModel
 from app.services.openai_service import analyze_sentiment
+from app.services.auth_service import get_current_user  # ✅ Import JWT user dependency
 
 router = APIRouter()
 
@@ -33,12 +34,20 @@ async def classify_user_mood(input: MoodInput):
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error classifying mood: {e}")
 
-# 🎵 Route 2: Return playlist for given mood
+# 🎵 Route 2: Return playlist for given mood (JWT protected)
 @router.post("/playlist")
-async def get_playlist(mood_input: MoodOnly):
+async def get_playlist(
+    mood_input: MoodOnly,
+    current_user: dict = Depends(get_current_user)  # ✅ Requires login
+):
     mood = mood_input.mood.lower()
     playlist = MOCK_PLAYLISTS.get(mood)
+    
     if playlist:
-        return {"mood": mood, "playlist": playlist}
+        return {
+            "user": current_user["username"],  # Optional: shows who requested it
+            "mood": mood,
+            "playlist": playlist
+        }
     else:
         raise HTTPException(status_code=404, detail="Mood not recognized")

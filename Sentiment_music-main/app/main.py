@@ -3,48 +3,49 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from fastapi.middleware.cors import CORSMiddleware
 
-# ✅ Import route modules
-from app.routes import mood
-from app.routes import auth
+from app.routes import mood   # ✅ Already included
+from app.routes import auth   # ✅ Add this line to include auth
 
-# 🚀 Initialize FastAPI application
+# Initialize FastAPI app
 app = FastAPI(
     title="Sentiment-Based Music Recommendation API",
-    description="A system that recommends playlists based on mood using OpenAI and JWT authentication.",
+    description="API for recommending music based on sentiment analysis",
     version="1.0.0"
 )
 
-# 🌍 Enable CORS (configure securely for production)
+# CORS Middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # 🔐 TODO: Restrict this in production
+    allow_origins=["*"],  # For development
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-# 📁 Serve static assets & templates if needed
+# Static & Templates
 app.mount("/static", StaticFiles(directory="app/static"), name="static")
 templates = Jinja2Templates(directory="app/templates")
 
-# 🏠 Root endpoints
-@app.get("/", tags=["Root"])
+# -------------------------
+#         Routes
+# -------------------------
+
+@app.get("/")
 async def root():
     return {"message": "Welcome to Sentiment-Based Music Recommendation API"}
 
-@app.get("/health", tags=["Root"])
+@app.get("/health")
 async def health_check():
     return {"status": "healthy"}
 
-# 🔌 Register application routers
-app.include_router(auth.router, prefix="/auth", tags=["Authentication"])
+# ✅ Include routers
 app.include_router(mood.router, prefix="/api/mood", tags=["Mood Analysis"])
+app.include_router(auth.router, prefix="/auth", tags=["Auth"])  # ✅ Add this line
 
-# 🔍 Print registered routes (for debugging)
-for route in app.routes:
-    print("✅ ROUTE:", route.path)
+# -------------------------
+#      Run Server
+# -------------------------
 
-# ⚙️ Run the server (only for local execution)
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run("app.main:app", host="0.0.0.0", port=8000, reload=True)

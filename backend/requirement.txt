@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+openai
+requests
+python-jose
+passlib[bcrypt]
+sqlalchemy
+asyncpg
+databases

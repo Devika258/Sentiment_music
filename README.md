@@ -32,7 +32,7 @@ The system uses **OpenAI** for sentiment analysis, then fetches matching playlis
 
 ---
 
-## 🖼️ System Architecture
+## System Architecture
 
 > *(Architecture Diagram Placeholder – Upload as `architecture.png` if available)*
 
@@ -48,7 +48,7 @@ User Input → FastAPI Backend → OpenAI & Spotify APIs → PostgreSQL → Fron
 
 ---
 
-## 🔗 API Endpoints
+## API Endpoints
 
 | Endpoint            | Method | Description                            |
 |---------------------|--------|----------------------------------------|
@@ -61,7 +61,7 @@ User Input → FastAPI Backend → OpenAI & Spotify APIs → PostgreSQL → Fron
 
 ---
 
-## 🚀 Deployment Strategy
+## Deployment Strategy
 
 - Backend deployed via **AWS Lambda** (serverless) or **AWS ECS** (Dockerized).
 - Frontend hosted on **Netlify** or **Vercel**.
@@ -76,7 +76,7 @@ User Input → FastAPI Backend → OpenAI & Spotify APIs → PostgreSQL → Fron
 
 ---
 
-## 🛡️ Security Practices
+## Security Practices
 
 - Passwords stored with **bcrypt** hashing.
 - User authentication handled with **JWT tokens**.
@@ -85,7 +85,7 @@ User Input → FastAPI Backend → OpenAI & Spotify APIs → PostgreSQL → Fron
 
 ---
 
-## 🧩 Project Structure
+## Project Structure
 
 ```bash
 sentiments/
@@ -111,7 +111,7 @@ sentiments/
 
 ---
 
-## 📚 References
+## References
 
 - [OpenAI API Documentation](https://platform.openai.com/docs)
 - [Spotify Web API Documentation](https://developer.spotify.com/documentation/web-api/)
@@ -121,7 +121,7 @@ sentiments/
 
 ---
 
-📬 Contact
+##Contact
 Built by: Devika Sivanjali Rajesh
 Student ID: 29718997
 Submission Date: 1st May 2025

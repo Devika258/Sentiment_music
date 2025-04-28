@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Architecture & API Design - Sentiment Music Recommender</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body style="
+  background-image: url('/images/backgroung.jpg');
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: #333;
+">
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+    <div class="container-fluid">
+      <a class="navbar-brand fw-bold text-primary" href="/">
+        🎵 Sentiment Music Recommender
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
+        aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarScroll">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" href="/architecture.html">Architecture & API</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/contact.html">Contact</a>
+          </li>
+        </ul>
+        <div class="d-flex">
+          <button class="btn btn-outline-danger" onclick="logout()">Logout</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="max-w-4xl mx-auto p-8 bg-white bg-opacity-80 rounded shadow mt-8">
+    <h1 class="text-4xl font-bold mb-6 text-center">Sentiment-Based Music Recommender</h1>
+
+    <section class="mb-10">
+      <h2 class="text-2xl font-semibold mb-4">System Architecture</h2>
+      <p class="mb-4">The application follows a modular, cloud-native architecture:</p>
+      <ul class="list-disc list-inside mb-6">
+        <li>User Frontend: Simple interface to submit moods and view playlists</li>
+        <li>FastAPI Backend: Manages authentication, mood analysis, API calls</li>
+        <li>External APIs: OpenAI (Sentiment analysis) and Spotify (Playlist suggestions)</li>
+        <li>PostgreSQL Database: User accounts, credits, history, saved playlists</li>
+      </ul>
+      <p><strong>Flow:</strong> User Input → FastAPI Backend → OpenAI + Spotify APIs → PostgreSQL → Response to Frontend</p>
+    </section>
+
+    <section class="mb-10">
+      <h2 class="text-2xl font-semibold mb-4">API Design</h2>
+      <div class="overflow-x-auto">
+        <table class="min-w-full table-auto border border-gray-300">
+          <thead class="bg-gray-200">
+            <tr>
+              <th class="px-4 py-2 border">Endpoint</th>
+              <th class="px-4 py-2 border">Method</th>
+              <th class="px-4 py-2 border">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="border px-4 py-2">/signup</td><td class="border px-4 py-2">POST</td><td class="border px-4 py-2">Register new user</td></tr>
+            <tr><td class="border px-4 py-2">/login</td><td class="border px-4 py-2">POST</td><td class="border px-4 py-2">Authenticate and get JWT token</td></tr>
+            <tr><td class="border px-4 py-2">/submit-mood</td><td class="border px-4 py-2">POST</td><td class="border px-4 py-2">Submit mood text for analysis</td></tr>
+            <tr><td class="border px-4 py-2">/credits</td><td class="border px-4 py-2">GET</td><td class="border px-4 py-2">Check available credits</td></tr>
+            <tr><td class="border px-4 py-2">/playlists</td><td class="border px-4 py-2">GET</td><td class="border px-4 py-2">Fetch playlists based on mood</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="mb-10">
+      <h2 class="text-2xl font-semibold mb-4">Deployment Strategy</h2>
+      <ul class="list-disc list-inside">
+        <li>FastAPI backend on AWS Lambda or ECS (Dockerized)</li>
+        <li>Database hosted via AWS RDS (PostgreSQL)</li>
+        <li>Frontend deployed on Netlify or Vercel</li>
+        <li>External API keys (OpenAI, Spotify) managed securely via AWS Secrets Manager</li>
+      </ul>
+    </section>
+
+    <footer class="text-center text-gray-500 mt-12">
+      <p>© 2025 Sentiment Music Recommender</p>
+    </footer>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Logout Script -->
+  <script>
+    function logout() {
+      localStorage.clear(); 
+      window.location.href = "/";
+    }
+  </script>
+
+</body>
+</html>

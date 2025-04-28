@@ -7,20 +7,20 @@ from datetime import datetime
 from typing import List, Dict, Any
 import traceback
 
-# 🚀 Router instance
+# Router instance
 router = APIRouter()
 
-# 🧠 In-memory history per user
+# In-memory history per user
 user_history: Dict[str, List[Dict[str, Any]]] = {}
 
-# 📥 Request Models
+# Request Models
 class MoodInput(BaseModel):
     text: str
 
 class MoodOnly(BaseModel):
     mood: str
 
-# 🔍 Route 1: Classify mood using OpenAI
+# Route 1: Classify mood using OpenAI
 @router.post("/classify-mood", summary="Classify User Mood", tags=["Mood Analysis"])
 async def classify_user_mood(input: MoodInput):
     """
@@ -34,7 +34,7 @@ async def classify_user_mood(input: MoodInput):
         print(traceback.format_exc())
         raise HTTPException(status_code=500, detail="OpenAI classification failed.")
 
-# 🎧 Route 2: Get a playlist from Spotify and log the access
+# Route 2: Get a playlist from Spotify and log the access
 @router.post("/playlist", summary="Get Playlist", tags=["Mood Analysis"])
 def get_playlist(
     mood_input: MoodOnly,
@@ -54,7 +54,7 @@ def get_playlist(
 
     current_user["credits"] -= 1  # 💳 Deduct credit
 
-    # 📝 Save the entry
+    # Save the entry
     entry = {
         "timestamp": datetime.utcnow().isoformat(),
         "mood": mood,
@@ -69,7 +69,7 @@ def get_playlist(
         "remaining_credits": current_user["credits"]
     }
 
-# 📜 Route 3: Return playlist history for current user
+# Route 3: Return playlist history for current user
 @router.get("/history", summary="View Playlist History", tags=["Mood Analysis"], response_model=Dict[str, Any])
 def get_user_history(current_user: dict = Depends(get_current_user)):
     """

@@ -7,7 +7,7 @@ Built for **CMP9785M Cloud Development** coursework submission.
 
 ## Overview
 
-Users input a short text describing their mood (e.g., "I feel energetic and motivated").  
+Users input one word text describing their mood (e.g., "Sad","happy","calm").  
 The system uses **OpenAI** for sentiment analysis, then fetches matching playlists via the **Spotify API**.
 
 **Technologies Used**:
@@ -84,6 +84,24 @@ User Input → FastAPI Backend → OpenAI & Spotify APIs → PostgreSQL → Fron
 - Usage of secure API keys and access tokens.
 
 ---
+---
+
+## References
+
+- [OpenAI API Documentation](https://platform.openai.com/docs)
+- [Spotify Web API Documentation](https://developer.spotify.com/documentation/web-api/)
+- [FastAPI Documentation](https://fastapi.tiangolo.com/)
+- [Docker Documentation](https://docs.docker.com/)
+- [GitHub Actions Documentation](https://docs.github.com/en/actions)
+
+---
+
+##Contact
+Built by: Devika Sivanjali Rajesh
+Student ID: 29718997
+Submission Date: 8th May 2025
+
+---
 
 ## Project Structure
 
@@ -108,23 +126,3 @@ sentiments/
 ├── Dockerfile
 ├── .gitignore
 └── requirements.txt
-
----
-
-## References
-
-- [OpenAI API Documentation](https://platform.openai.com/docs)
-- [Spotify Web API Documentation](https://developer.spotify.com/documentation/web-api/)
-- [FastAPI Documentation](https://fastapi.tiangolo.com/)
-- [Docker Documentation](https://docs.docker.com/)
-- [GitHub Actions Documentation](https://docs.github.com/en/actions)
-
----
-
-##Contact
-Built by: Devika Sivanjali Rajesh
-Student ID: 29718997
-Submission Date: 1st May 2025
-
-Contact Form: Available at /contact.html
-Feedback Storage: Handled via backend API (/submit-feedback)

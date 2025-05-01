@@ -96,7 +96,7 @@ User Input → FastAPI Backend → OpenAI & Spotify APIs → PostgreSQL → Fron
 
 ---
 
-##Contact
+## Contact
 Built by: Devika Sivanjali Rajesh
 Student ID: 29718997
 Submission Date: 8th May 2025

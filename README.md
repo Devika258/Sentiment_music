@@ -34,9 +34,8 @@ The system uses **OpenAI** for sentiment analysis, then fetches matching playlis
 
 ## System Architecture
 
-> *(Architecture Diagram Placeholder – Upload as `architecture.png` if available)*
+![architecture](https://github.com/user-attachments/assets/2870ff09-d16e-4f78-b098-38d7300ccd08)
 
-**Main Components**:
 - **Frontend** (ReactJS)
 - **Backend** (FastAPI)
 - **External APIs** (OpenAI & Spotify)

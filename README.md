@@ -7,7 +7,7 @@ Built for **CMP9785M Cloud Development** coursework submission.
 
 ## Overview
 
-Users input one word text describing their mood (e.g., "Sad","happy","calm").  
+•Users input a short text describing their mood (e.g., "I feel energetic and motivated"). 
 The system uses **OpenAI** for sentiment analysis, then fetches matching playlists via the **Spotify API**.
 
 **Technologies Used**:
@@ -57,7 +57,6 @@ User Input → FastAPI Backend → OpenAI & Spotify APIs → PostgreSQL → Fron
 | `/submit-mood`      | POST   | Submit mood text for analysis          |
 | `/credits`          | GET    | Check available user credits           |
 | `/playlists`        | GET    | Fetch playlists based on analyzed mood |
-| `/submit-feedback`  | POST   | Submit user feedback via contact form  |
 
 ---
 
